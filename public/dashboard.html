@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Computer Repair System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="nav-brand">
+                <i class="fa-solid fa-screwdriver-wrench"></i> Repair System
+            </div>
+            <div class="nav-user">
+                <span>Welcome, <strong id="user-name">User</strong></span>
+                <button onclick="logout()" class="btn-secondary btn-sm">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        <div id="alert-box" class="alert hidden"></div>
+
+        <!-- Stats Row -->
+        <div class="stats-grid">
+            <div class="card stat-card">
+                <div class="stat-icon bg-blue">
+                    <i class="fa-solid fa-ticket"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Total Tickets</h3>
+                    <p id="stat-total">0</p>
+                </div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-icon bg-yellow">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>In Progress</h3>
+                    <p id="stat-progress">0</p>
+                </div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-icon bg-green">
+                    <i class="fa-solid fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Completed</h3>
+                    <p id="stat-completed">0</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+            <!-- New Ticket Form -->
+            <div class="card">
+                <h2><i class="fa-solid fa-plus-circle"></i> New Repair Ticket</h2>
+                <form id="ticket-form">
+                    <div class="form-group">
+                        <label>Device Type</label>
+                        <select id="device-type" required>
+                            <option value="">Select Device...</option>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Desktop">Desktop</option>
+                            <option value="Phone">Phone</option>
+                            <option value="Tablet">Tablet</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Priority</label>
+                        <select id="priority">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description of Issue</label>
+                        <textarea id="description" rows="4" placeholder="Please describe the problem..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" style="width: 100%;">
+                        Submit Ticket <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Ticket List -->
+            <div class="card">
+                <h2><i class="fa-solid fa-list"></i> My Tickets</h2>
+                <div id="tickets-container">
+                    <p>Loading tickets...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Ticket Modal -->
+    <div id="modal-backdrop" class="modal-backdrop" onclick="closeModal()"></div>
+    <div id="ticket-modal" class="modal">
+        <div class="modal-header">
+            <h2>Ticket Details</h2>
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+        </div>
+        <div id="modal-content"></div>
+
+        <div style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+            <h3>Add Note</h3>
+            <div class="form-group">
+                <textarea id="note-text" rows="2" placeholder="Type a message..."></textarea>
+            </div>
+            <button onclick="addNote()" class="btn-primary btn-sm">Send Message</button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
