@@ -179,7 +179,7 @@ a:hover {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .landing-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -754,4 +754,29 @@ tr:hover td {
   color: var(--text-main);
   font-weight: 600;
   margin-right: 0.5rem;
+}
+
+/* Password Toggle */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  padding-right: 2.5rem;
+  /* Space for the icon */
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 0.875rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.15s ease;
+  z-index: 10;
+}
+
+.password-toggle-icon:hover {
+  color: var(--text-main);
 }

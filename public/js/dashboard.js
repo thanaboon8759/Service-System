@@ -34,13 +34,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function loadTickets() {
+    const container = document.getElementById('tickets-container');
+
+    // Loading State
+    container.innerHTML = `
+        <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+            <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+            <p style="margin-top: 1rem;">Loading tickets...</p>
+        </div>
+    `;
+
     try {
         const res = await fetch(`${API_URL}/tickets`, {
             headers: { 'Authorization': `Bearer ${getToken()}` }
         });
         const tickets = await res.json();
-
-        const container = document.getElementById('tickets-container');
 
         // Update Stats
         document.getElementById('stat-total').textContent = tickets.length;
@@ -48,7 +56,14 @@ async function loadTickets() {
         document.getElementById('stat-completed').textContent = tickets.filter(t => t.status === 'Completed' || t.status === 'Closed').length;
 
         if (tickets.length === 0) {
-            container.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 2rem;">No tickets found. Create one to get started!</p>';
+            container.innerHTML = `
+                <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                    <i class="fa-solid fa-clipboard-list fa-3x" style="margin-bottom: 1rem; opacity: 0.5;"></i>
+                    <h3>No Tickets Found</h3>
+                    <p>You haven't submitted any repair tickets yet.</p>
+                    <p>Use the form on the left to create your first ticket.</p>
+                </div>
+            `;
             return;
         }
 
@@ -86,6 +101,12 @@ async function loadTickets() {
         container.innerHTML = html;
     } catch (err) {
         handleError(err);
+        container.innerHTML = `
+            <div style="text-align: center; padding: 2rem; color: var(--danger-color);">
+                <i class="fa-solid fa-exclamation-circle fa-2x"></i>
+                <p>Failed to load tickets. Please try again.</p>
+            </div>
+        `;
     }
 }
 
