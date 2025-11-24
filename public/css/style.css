@@ -508,10 +508,12 @@ input::placeholder {
 }
 
 .step-label {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
+  white-space: nowrap;
+  letter-spacing: 0.025em;
 }
 
 .timeline-step.active .step-icon {
