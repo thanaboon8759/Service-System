@@ -3,11 +3,25 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 
 const connectDB = async () => {
   try {
-    // Try connecting to local MongoDB first
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log(`MongoDB Connected: ${mongoose.connection.host}`);
+    // อ่านค่า URL และชื่อฐานข้อมูลจากตัวแปรแวดล้อม (.env)
+    const { MONGODB_URL, MONGODB_DB_NAME } = process.env;
+
+    // สร้าง URI สำหรับเชื่อมต่อ MongoDB
+    // ตัวอย่าง: mongodb://localhost:27017/mydb
+    const mongoUri =
+      MONGODB_URL && MONGODB_DB_NAME
+        ? `${MONGODB_URL.replace(/\/+$/, '')}/${MONGODB_DB_NAME}`
+        : null;
+
+    if (!mongoUri) {
+      throw new Error('MONGODB_URL หรือ MONGODB_DB_NAME ไม่ถูกตั้งค่าใน .env');
+    }
+
+    await mongoose.connect(mongoUri);
+    console.log(`MongoDB Connected: ${mongoose.connection.host}/${MONGODB_DB_NAME}`);
   } catch (error) {
-    console.log('Could not connect to local MongoDB. Attempting to start in-memory database...');
+    console.log('Could not connect to MongoDB with provided env vars. Attempting to start in-memory database...');
+    console.error(error.message);
     try {
       const mongod = await MongoMemoryServer.create();
       const uri = mongod.getUri();

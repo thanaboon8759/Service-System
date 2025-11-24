@@ -465,15 +465,19 @@ input::placeholder {
   align-items: center;
   margin-bottom: 2rem;
   position: relative;
-  padding: 0 1rem;
+  /* เพิ่ม padding ซ้าย/ขวา เพื่อให้ตำแหน่งเส้นตรงกับจุดกึ่งกลางของไอคอนแรก/สุดท้ายมากขึ้น */
+  padding: 0 2.5rem;
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  top: 15px;
-  left: 0;
-  width: 100%;
+  /* วางเส้นให้อยู่กึ่งกลางแนวตั้งของไอคอน */
+  top: 18px;
+  /* ใช้ left/right แทน width เพื่อให้ปลายเส้นเริ่ม-จบภายในระยะเดียวกับไอคอน */
+  left: 3.5rem;
+  right: 3.5rem;
+  width: auto;
   height: 2px;
   background-color: var(--border-color);
   z-index: 1;

@@ -22,7 +22,10 @@ const repairTicketSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Submitted', 'In Progress', 'Awaiting Parts', 'Completed'],
+        // อนุญาตค่า status ให้ตรงกับที่ใช้ทั้งใน frontend และฝั่ง admin
+        // เดิมมีเพียง 'Submitted', 'In Progress', 'Awaiting Parts', 'Completed'
+        // เพิ่ม 'Open' และ 'Closed' เพื่อไม่ให้ validation error เวลา admin เปลี่ยนเป็นค่าเหล่านี้
+        enum: ['Submitted', 'In Progress', 'Awaiting Parts', 'Completed', 'Open', 'Closed'],
         default: 'Submitted',
     },
     technician: {

@@ -156,19 +156,27 @@ async function manageTicket(id) {
         document.getElementById('update-cost').value = ticket.estimatedCost || 0;
 
         // Timeline Logic
-        const steps = ['Open', 'In Progress', 'Completed', 'Closed'];
+        // ให้ขั้นสถานะใน timeline ตรงกับ status ใน database
+        const steps = ['Submitted', 'In Progress', 'Awaiting Parts', 'Completed'];
         const currentStepIndex = steps.indexOf(ticket.status);
 
         let timelineHtml = '<div class="timeline">';
         steps.forEach((step, index) => {
             let className = 'timeline-step';
-            if (index < currentStepIndex) className += ' completed';
-            if (index === currentStepIndex) className += ' active';
+
+            // ถ้าสถานะใน database ถึงขั้นไหน ให้ทุกขั้นก่อนหน้าและขั้นปัจจุบันเป็น "completed" (สีเขียว)
+            if (currentStepIndex !== -1 && index <= currentStepIndex) {
+                className += ' completed';
+            }
+            // ใช้ active สำหรับขั้นปัจจุบัน (แต่สีจะถูก override ด้วย completed ให้เป็นเขียว)
+            if (index === currentStepIndex) {
+                className += ' active';
+            }
 
             timelineHtml += `
             <div class="${className}">
                 <div class="step-icon">
-                    <i class="fa-solid ${index <= currentStepIndex ? 'fa-check' : 'fa-circle'}"></i>
+                    <i class="fa-solid ${currentStepIndex !== -1 && index <= currentStepIndex ? 'fa-check' : 'fa-circle'}"></i>
                 </div>
                 <div class="step-label">${step}</div>
             </div>
@@ -234,7 +242,12 @@ async function addNote() {
             body: JSON.stringify({ text })
         });
 
-        if (!res.ok) throw new Error('Failed to add note');
+        const data = await res.json().catch(() => ({}));
+
+        if (!res.ok) {
+            // แสดงข้อความ error จาก backend ถ้ามี
+            throw new Error(data.message || 'Failed to add note');
+        }
 
         document.getElementById('note-text').value = '';
         manageTicket(currentTicketId); // Refresh modal

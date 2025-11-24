@@ -175,7 +175,12 @@ async function addNote() {
             body: JSON.stringify({ text })
         });
 
-        if (!res.ok) throw new Error('Failed to add note');
+        const data = await res.json().catch(() => ({}));
+
+        if (!res.ok) {
+            // แสดงข้อความจาก backend ถ้ามี เพื่อจะได้รู้สาเหตุจริง ๆ
+            throw new Error(data.message || 'Failed to add note');
+        }
 
         document.getElementById('note-text').value = '';
         viewTicket(currentTicketId); // Refresh modal
