@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Small-screen adjustments for phones (iPhone widths up to ~430px) */
+@media (max-width: 430px) {
+  #root {
+    padding: 1rem;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .logo {
+    height: 3.5em;
+    padding: 1rem;
+  }
+}

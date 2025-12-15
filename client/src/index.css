@@ -115,6 +115,13 @@ a:hover {
   padding: 0 1.5rem;
 }
 
+/* Dashboard two-column grid used on user dashboard */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) 2fr;
+  gap: 2rem;
+}
+
 .main-content {
   flex: 1;
   padding: 3rem 0;
@@ -644,6 +651,11 @@ tr:hover td {
   color: var(--text-secondary);
 }
 
+/* default: hide the nav toggle on larger screens */
+.nav-toggle {
+  display: none;
+}
+
 /* Modal */
 .modal-backdrop {
   position: fixed;
@@ -779,4 +791,216 @@ tr:hover td {
 
 .password-toggle-icon:hover {
   color: var(--text-main);
+}
+
+/* Small iPhone-specific tweaks (covers widths up to ~430px: iPhone SE through iPhone 17 Pro Max) */
+@media (max-width: 430px) {
+  :root {
+    /* slightly smaller base typography on very small screens */
+    font-size: 15px;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .nav-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-size: 1rem;
+  }
+
+  .nav-brand img {
+    height: 28px;
+  }
+
+  /* hide long welcome text to save navbar space on small phones when menu is closed */
+  .nav-user span {
+    display: none;
+  }
+
+  /* Show username when mobile nav is opened */
+  .nav-user.open span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .nav-user {
+    gap: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  /* By default hide user controls on very small screens; toggle will show */
+  .nav-user {
+    display: none;
+  }
+
+  .nav-user.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--border-color);
+    padding: 0.35rem 0.5rem;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    color: var(--text-main);
+  }
+
+  /* Modal: make full-screen and scrollable on small devices */
+  .modal {
+    position: fixed;
+    top: 6vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2rem);
+    max-width: 720px;
+    height: auto;
+    max-height: 88vh;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .modal-backdrop {
+    background-color: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(1px);
+  }
+
+  /* Tables: allow horizontal scrolling rather than squeezing columns */
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+  }
+
+  /* Timeline: reduce spacing and icon sizes to fit */
+  .timeline {
+    padding: 0 0.75rem;
+  }
+
+  .timeline::before {
+    left: 2.25rem;
+    right: 2.25rem;
+  }
+
+  .step-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .nav-user .btn-secondary,
+  .nav-user .btn-sm {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  /* Landing & hero adjustments */
+  .landing-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    min-height: auto;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .hero-section {
+    max-width: 100%;
+    padding-right: 0;
+  }
+
+  .auth-card {
+    padding: 1.5rem !important;
+    margin: 0 0.25rem;
+  }
+
+  /* Stack dashboard columns on small devices so cards fit vertically */
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Make cards full width and reduce padding slightly */
+  .dashboard-grid .card {
+    padding: 1rem;
+    margin: 0;
+  }
+
+  /* Reduce table padding and allow table to wrap cleanly */
+  .dashboard-grid table th,
+  .dashboard-grid table td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Make stats and tables easier to read on small screens */
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  table th,
+  table td {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .timeline {
+    padding: 0 1rem;
+  }
+
+  .toast {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .main-content {
+    padding: 1.5rem 0;
+  }
+
+  /* Force the two-column modal layout to stack vertically on small screens */
+  .modal form > div {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .modal .messages-container {
+    max-height: 300px;
+    margin-bottom: 0.75rem;
+  }
+
+  .modal .ticket-details p {
+    font-size: 0.95rem;
+  }
+
+  .modal .form-group {
+    margin-bottom: 0.75rem;
+  }
+
+  .modal .btn-primary {
+    width: 100%;
+  }
 }

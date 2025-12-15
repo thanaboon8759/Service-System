@@ -104,7 +104,7 @@ const DashboardPage = () => {
                     </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 1fr) 2fr', gap: '2rem' }}>
+                <div className="dashboard-grid">
                     {/* New Ticket Form */}
                     <div className="card">
                         <h2><i className="fa-solid fa-plus-circle"></i> New Repair Ticket</h2>
