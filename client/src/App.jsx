@@ -12,7 +12,7 @@ function App() {
     <Router>
       <Routes>
         {/* Public Route */}
-        <Route path="/" element={!user ? <LoginPage /> : <Navigate to={user.isAdmin ? "/admin" : "/dashboard"} />} />
+        <Route path="/" element={!user ? <LoginPage /> : <Navigate to={user.role === 'admin' ? "/admin" : "/dashboard"} />} />
 
         {/* Protected User Routes */}
         <Route element={<PrivateRoute />}>
