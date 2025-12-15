@@ -1,6 +1,4 @@
-# Service System (Refactored MERN Stack)
-
-This project has been refactored from a monolithic Express/HTML app to a modern MERN stack architecture (MongoDB, Express, React, Node.js).
+# Service System 
 
 ## Architecture
 
