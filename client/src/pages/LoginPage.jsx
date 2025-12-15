@@ -94,8 +94,18 @@ const LoginPage = () => {
                     </div>
                 </div>
 
+                {/* Animated background dots (purely decorative) */}
+                <div className="bg-anim" aria-hidden="true">
+                    {Array.from({ length: 6 }).map((_, i) => (
+                        <span key={i} className={`bg-dot bg-dot-${i + 1}`}></span>
+                    ))}
+                </div>
+
                 {/* Auth Forms */}
                 <div id="auth-card" className="card auth-card">
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+                        <img src="/4449037.png" alt="logo" style={{ height: 52 }} />
+                    </div>
                     <div className="tabs">
                         <button
                             className={`tab-btn ${activeTab === 'login' ? 'active' : ''}`}
@@ -134,7 +144,7 @@ const LoginPage = () => {
                                     onChange={(e) => InputChange(e, 'login')}
                                 />
                             </div>
-                            <button type="submit" style={{ width: '100%' }} disabled={loading}>
+                            <button type="submit" className="btn-primary btn-lg" disabled={loading}>
                                 {loading ? 'Logging in...' : 'Login'}
                             </button>
                         </form>
@@ -187,7 +197,7 @@ const LoginPage = () => {
                                     ></i>
                                 </div>
                             </div>
-                            <button type="submit" style={{ width: '100%' }} disabled={loading}>
+                            <button type="submit" className="btn-primary btn-lg" disabled={loading}>
                                 {loading ? 'Registering...' : 'Register'}
                             </button>
                         </form>
