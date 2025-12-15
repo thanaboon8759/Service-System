@@ -1,23 +1,16 @@
 {
-  "name": "express",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^1.13.2",
-    "bcryptjs": "^3.0.3",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongodb-memory-server": "^10.3.0",
-    "mongoose": "^9.0.0",
-    "morgan": "^1.10.1"
-  }
+    "name": "service-system-monorepo",
+    "version": "1.0.0",
+    "description": "MERN Stack Refactoring of Service System",
+    "scripts": {
+        "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+        "start:server": "cd server && npm run dev",
+        "start:client": "cd client && npm run dev",
+        "dev": "concurrently \"npm run start:server\" \"npm run start:client\"",
+        "build": "cd client && npm run build",
+        "serve": "cd server && set NODE_ENV=production && npm start"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
 }
