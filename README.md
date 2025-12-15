@@ -62,3 +62,8 @@ To build the React frontend and serve it via Express:
 - **User Dashboard**: Create tickets, view history, chat/notes, real-time status updates.
 - **Admin Dashboard**: Manage tickets, update status, assign technicians, view stats.
 - **Modern UI**: Polished interface with responsive design.
+
+## Recent Updates
+
+- **Fix Server Startup**: Resolved an issue with `path-to-regexp` in Express 5 by updating route definitions in `server.js`.
+- **Logo Update**: Updated the application logo in the navigation bar and browser favicon (`/client/public/4449037.png`).

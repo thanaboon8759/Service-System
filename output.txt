@@ -1,0 +1,23 @@
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Could not connect to MongoDB with provided env vars. Attempting to start in-memory database...
+MONGODB_URL หรือ MONGODB_DB_NAME ไม่ถูกตั้งค่าใน .env
+MongoDB Connected (In-Memory): 127.0.0.1
+C:\Users\thana\OneDrive\Desktop\Code work\Express\server\node_modules\path-to-regexp\dist\index.js:96
+            throw new PathError(`Missing parameter name at index ${index}`, str);
+                  ^
+
+PathError [TypeError]: Missing parameter name at index 6: /api/*; visit https://git.new/pathToRegexpError for info
+    at name (C:\Users\thana\OneDrive\Desktop\Code work\Express\server\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (C:\Users\thana\OneDrive\Desktop\Code work\Express\server\node_modules\path-to-regexp\dist\index.js:113:68)
+    at pathToRegexp (C:\Users\thana\OneDrive\Desktop\Code work\Express\server\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (C:\Users\thana\OneDrive\Desktop\Code work\Express\server\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (C:\Users\thana\OneDrive\Desktop\Code work\Express\server\node_modules\router\lib\layer.js:86:23)
+    at new Layer (C:\Users\thana\OneDrive\Desktop\Code work\Express\server\node_modules\router\lib\layer.js:93:62)
+    at Function.use (C:\Users\thana\OneDrive\Desktop\Code work\Express\server\node_modules\router\index.js:398:19)
+    at Function.<anonymous> (C:\Users\thana\OneDrive\Desktop\Code work\Express\server\node_modules\express\lib\application.js:222:21)
+    at Array.forEach (<anonymous>)
+    at Function.use (C:\Users\thana\OneDrive\Desktop\Code work\Express\server\node_modules\express\lib\application.js:219:7) {
+  originalPath: '/api/*'
+}
+
+Node.js v22.19.0

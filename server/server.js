@@ -26,7 +26,7 @@ const startServer = async () => {
     app.use('/api/users', require('./routes/userRoutes'));
 
     // 404 for API routes (Global)
-    app.use('/api/*', (req, res) => {
+    app.use('/api', (req, res) => {
         res.status(404).json({ message: 'Not Found' });
     });
 

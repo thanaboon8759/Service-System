@@ -54,6 +54,7 @@ const registerUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
     try {
         const { username, password } = req.body;
+        console.log('Login attempt:', { username, password }); // DEBUG LOG
 
         // Check for user username
         const user = await User.findOne({ username }).select('+password');
